@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="default_indicator_margin_horizontal">10dp</dimen>
+    <dimen name="default_indicator_margin_vertical">5dp</dimen>
+</resources>

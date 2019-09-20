@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- InfinitePagerLayout -->
+    <declare-styleable name="InfiniteViewPager">
+        <attr name="aspectRatio" format="float" />
+        <attr name="autoSlideDuration" format="integer|reference" />
+        <attr name="autoSlide" format="boolean" />
+        <!-- Radius of the circles. This is also the spacing between circles. -->
+        <attr name="radius" />
+        <attr name="margin"/>
+        <attr name="unselectedColor"/>
+        <attr name="selectedColor"/>
+        <attr name="indicatorGravity" />
+        <attr name="indicatorMarginHorizontal"  />
+        <attr name="indicatorMarginVertical" />
+        <attr name="indicatorVisibility" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CirclePageIndicator">
+        <!-- Radius of the circles. This is also the spacing between circles. -->
+        <attr name="radius" />
+        <attr name="margin"/>
+        <attr name="unselectedColor"/>
+        <attr name="selectedColor"/>
+    </declare-styleable>
+
+    <attr name="radius" format="dimension" />
+    <attr name="margin" format="dimension" />
+    <attr name="unselectedColor" format="color" />
+    <attr name="selectedColor" format="color" />
+
+    <!-- Controls the initial visibility of the view.  -->
+    <attr name="indicatorVisibility">
+        <!-- Visible on screen; the default value. -->
+        <enum name="visible" value="0" />
+        <!-- Not displayed, but taken into account during layout (space is left for it). -->
+        <enum name="invisible" value="4" />
+        <!-- Completely hidden, as if the view had not been added. -->
+        <enum name="gone" value="8" />
+    </attr>
+
+    <attr name="indicatorGravity">
+        <!-- Push object to the top of its container, not changing its size. -->
+        <flag name="top" value="0x30" />
+        <!-- Push object to the bottom of its container, not changing its size. -->
+        <flag name="bottom" value="0x50" />
+        <!-- Push object to the left of its container, not changing its size. -->
+        <flag name="left" value="0x03" />
+        <!-- Push object to the right of its container, not changing its size. -->
+        <flag name="right" value="0x05" />
+        <!-- Place object in the vertical center of its container, not changing its size. -->
+        <flag name="center_vertical" value="0x10" />
+        <!-- Place object in the horizontal center of its container, not changing its size. -->
+        <flag name="center_horizontal" value="0x01" />
+        <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+        <flag name="center" value="0x11" />
+        <!-- Push object to the beginning of its container, not changing its size. -->
+        <flag name="start" value="0x00800003" />
+        <!-- Push object to the end of its container, not changing its size. -->
+        <flag name="end" value="0x00800005" />
+    </attr>
+</resources>

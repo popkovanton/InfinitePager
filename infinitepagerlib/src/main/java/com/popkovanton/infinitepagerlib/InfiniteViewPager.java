@@ -61,9 +61,9 @@ public class InfiniteViewPager extends FrameLayout {
             mAutoSlideDuration = a.getInt(R.styleable.InfiniteViewPager_autoSlideDuration, (int) DEFAULT_SLIDE_DURATION);
             indicatorMarginVertical = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_indicatorMarginVertical, getResources().getDimensionPixelSize(R.dimen.default_indicator_margin_vertical));
             indicatorMarginHorizontal = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_indicatorMarginHorizontal, getResources().getDimensionPixelSize(R.dimen.default_indicator_margin_horizontal));
-            setIndicatorGravity(a.getInt(R.styleable.InfiniteViewPager_indicatorGravity, DEFAULT_GRAVITY));
+            setIndicatorGravity(a.getInt(R.styleable.InfiniteViewPager_indicatorGravity, mIndicatorGravity));
 
-            indicatorVisibility = a.getInt(R.styleable.InfiniteViewPager_indicatorVisibility, InfiniteViewPager.DEFAULT_INDICATOR_VISIBILITY);
+            indicatorVisibility = a.getInt(R.styleable.InfiniteViewPager_indicatorVisibility, indicatorVisibility);
 
             setIndicatorVisibility(indicatorVisibility);
             if (indicatorVisibility == View.VISIBLE) {

@@ -7,8 +7,7 @@ import android.os.Bundle;
 import com.popkovanton.infinitepagerlib.InfiniteViewPager;
 
 public class MainActivity extends AppCompatActivity {
-    InfiniteViewPager mImageSliderView;
-    private SliderAdapter mImageSliderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupImageSlider() {
-        mImageSliderView = findViewById(R.id.infiniteSlider);
-        mImageSliderAdapter = new SliderAdapter(getSupportFragmentManager());
+        InfiniteViewPager mImageSliderView = findViewById(R.id.infiniteSlider);
+        SliderAdapter mImageSliderAdapter = new SliderAdapter(getSupportFragmentManager());
         mImageSliderView.setAdapter(mImageSliderAdapter);
     }
 }

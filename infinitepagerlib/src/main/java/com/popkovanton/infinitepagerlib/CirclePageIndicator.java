@@ -2,7 +2,6 @@ package com.popkovanton.infinitepagerlib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -46,18 +45,6 @@ public class CirclePageIndicator extends View {
         }
     };
 
-    private final DataSetObserver mDataSetObserver = new DataSetObserver() {
-        @Override
-        public void onChanged() {
-            updateCount();
-        }
-
-        @Override
-        public void onInvalidated() {
-        }
-    };
-
-
     public CirclePageIndicator(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
@@ -86,7 +73,6 @@ public class CirclePageIndicator extends View {
         mViewPager = viewPager;
         mViewPager.addOnPageChangeListener(mOnPageChangeListener);
         final InfiniteFragmentPagerAdapter adapter = (InfiniteFragmentPagerAdapter) mViewPager.getAdapter();
-        //PagerAdapterHelper.registerDataSetObserver(adapter, mDataSetObserver);
         if(adapter != null)
         mCount = adapter.getRealCount();
         if (mCount > 0) {
@@ -147,7 +133,7 @@ public class CirclePageIndicator extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mCount > 0) {
-            int startX = getPaddingStart();
+            int startX = getPaddingLeft();
             int startY = getPaddingTop();
             int diameter = 2 * mRadius;
             for (int i = 0; i < mCount - 1; i++) {

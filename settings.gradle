@@ -1,2 +1,2 @@
 include ':sample', ':infinitepagerlib'
-rootProject.name='InfinitePager'
+rootProject.name='InfinitePagerSample'

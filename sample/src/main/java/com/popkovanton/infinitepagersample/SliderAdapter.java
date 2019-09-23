@@ -1,4 +1,4 @@
-package com.popkovanton.infinitepager;
+package com.popkovanton.infinitepagersample;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package com.popkovanton.infinitepager;
+package com.popkovanton.infinitepagersample;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

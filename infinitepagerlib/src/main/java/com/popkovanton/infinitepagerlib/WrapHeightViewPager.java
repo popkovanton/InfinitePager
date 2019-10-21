@@ -21,7 +21,7 @@ public class WrapHeightViewPager extends ViewPager {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int height = 0;
+        //int height = 0;
         for (int i = 0; i < getChildCount(); i++) {
             if (i == 0) {
                 View child = getChildAt(i);

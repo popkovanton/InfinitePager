@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ public class CirclePageIndicator extends View {
     private int mMargin;
     private int mSelectedColor;
     private int mUnselectedColor;
+    private boolean isClickable;
     private Paint mPaint;
     private int mCount = 0;
     private int mSelectedPosition = 0;
@@ -59,10 +61,11 @@ public class CirclePageIndicator extends View {
         float density = context.getResources().getDisplayMetrics().density;
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CirclePageIndicator);
         try {
-            mMargin = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_margin, (int) (4 * density));
-            mRadius = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_radius, (int) (3 * density));
+            mMargin = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_marginBtwIndicators, (int) (4 * density));
+            mRadius = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_indicatorRadius, (int) (3 * density));
             mSelectedColor = a.getColor(R.styleable.CirclePageIndicator_selectedColor, Color.WHITE);
             mUnselectedColor = a.getColor(R.styleable.CirclePageIndicator_unselectedColor, Color.rgb(128, 128, 128));
+            isClickable = a.getBoolean(R.styleable.CirclePageIndicator_clickable, true);
         } finally {
             a.recycle();
         }
@@ -73,8 +76,8 @@ public class CirclePageIndicator extends View {
         mViewPager = viewPager;
         mViewPager.addOnPageChangeListener(mOnPageChangeListener);
         final InfiniteFragmentPagerAdapter adapter = (InfiniteFragmentPagerAdapter) mViewPager.getAdapter();
-        if(adapter != null)
-        mCount = adapter.getCount();
+        if (adapter != null)
+            mCount = adapter.getCount();
         if (mCount > 0) {
             requestLayout();
         }
@@ -86,6 +89,11 @@ public class CirclePageIndicator extends View {
 
     public void setSelectedColor(int selectedColor) {
         mSelectedColor = selectedColor;
+    }
+
+    @Override
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
     }
 
     public void setRadius(int radius) {
@@ -144,5 +152,26 @@ public class CirclePageIndicator extends View {
             mPaint.setColor(mCount - 1 == mSelectedPosition ? mSelectedColor : mUnselectedColor);
             canvas.drawCircle(startX + mRadius, startY + mRadius, mRadius, mPaint);
         }
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (isClickable) {
+                    int startX = getPaddingLeft();
+                    int diameter = 2 * mRadius;
+                    for (int i = 0; i < mCount; i++) {
+                        if (event.getX() >= startX && event.getX() <= startX + diameter + mMargin) {
+                            mViewPager.setCurrentItem(i);
+                            return true;
+                        }
+                        startX += diameter + mMargin;
+                    }
+                }
+                return true;
+        }
+        return true;
     }
 }

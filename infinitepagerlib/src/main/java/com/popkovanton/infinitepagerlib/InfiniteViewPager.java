@@ -77,14 +77,16 @@ public class InfiniteViewPager extends FrameLayout {
                 if (selectedColor != 0) {
                     setSelectedColor(selectedColor);
                 }
-                int radius = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_radius, 0);
+                int radius = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_indicatorRadius, 0);
                 if (radius != 0) {
                     setRadius(radius);
                 }
-                int margin = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_margin, 0);
+                int margin = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_marginBtwIndicators, 0);
                 if (margin != 0) {
                     setMargin(margin);
                 }
+                boolean clickable = a.getBoolean(R.styleable.InfiniteViewPager_clickable, true);
+                setIndicatorClickable(clickable);
             }
         } finally {
             a.recycle();
@@ -177,6 +179,10 @@ public class InfiniteViewPager extends FrameLayout {
 
     public void setMargin(int margin) {
         mIndicator.setMargin(margin);
+    }
+
+    public void setIndicatorClickable(boolean clickable) {
+        mIndicator.setClickable(clickable);
     }
 
     public void setAspectRatio(boolean isAspectRatio, float mAspectRatio) {

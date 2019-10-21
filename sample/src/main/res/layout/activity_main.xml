@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:radius="4dp"
+        app:indicatorRadius="4dp"
         app:autoSlide="true"
         app:indicatorGravity="center_horizontal|bottom"
         app:indicatorMarginHorizontal="5dp"

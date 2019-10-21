@@ -7,10 +7,11 @@
         <attr name="autoSlideDuration" format="integer|reference" />
         <attr name="autoSlide" format="boolean" />
         <!-- Radius of the circles. This is also the spacing between circles. -->
-        <attr name="radius" />
-        <attr name="margin"/>
+        <attr name="indicatorRadius" />
+        <attr name="marginBtwIndicators"/>
         <attr name="unselectedColor"/>
         <attr name="selectedColor"/>
+        <attr name="clickable"/>
         <attr name="indicatorGravity" />
         <attr name="indicatorMarginHorizontal"  />
         <attr name="indicatorMarginVertical" />
@@ -20,16 +21,18 @@
 
     <declare-styleable name="CirclePageIndicator">
         <!-- Radius of the circles. This is also the spacing between circles. -->
-        <attr name="radius" />
-        <attr name="margin"/>
+        <attr name="indicatorRadius" />
+        <attr name="marginBtwIndicators"/>
         <attr name="unselectedColor"/>
         <attr name="selectedColor"/>
+        <attr name="clickable"/>
     </declare-styleable>
 
-    <attr name="radius" format="dimension" />
-    <attr name="margin" format="dimension" />
+    <attr name="indicatorRadius" format="dimension" />
+    <attr name="marginBtwIndicators" format="dimension" />
     <attr name="unselectedColor" format="color" />
     <attr name="selectedColor" format="color" />
+    <attr name="clickable" format="boolean" />
 
     <!-- Controls the initial visibility of the view.  -->
     <attr name="indicatorVisibility">

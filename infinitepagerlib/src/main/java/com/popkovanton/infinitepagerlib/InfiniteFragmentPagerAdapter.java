@@ -1,6 +1,5 @@
 package com.popkovanton.infinitepagerlib;
 
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,16 +19,12 @@ public abstract class InfiniteFragmentPagerAdapter extends FragmentStatePagerAda
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return getFragments().get(position % getRealCount());
+        return getFragments().get(position);
     }
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
-    }
-
-    public int getRealCount(){
-        return getFragments().size();
+        return fragments != null ? fragments.size() : 0;
     }
 
     protected abstract List<Fragment> initFragments();
@@ -38,11 +33,12 @@ public abstract class InfiniteFragmentPagerAdapter extends FragmentStatePagerAda
         return fragments;
     }
 
+
     public boolean isEmpty() {
-        return getRealCount() == 0;
+        return getCount() == 0;
     }
 
     public int getActualPosition(int position) {
-        return isEmpty() ? POSITION_NONE : (position % getRealCount());
+        return isEmpty() ? POSITION_NONE : position;
     }
 }

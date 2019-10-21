@@ -74,7 +74,7 @@ public class CirclePageIndicator extends View {
         mViewPager.addOnPageChangeListener(mOnPageChangeListener);
         final InfiniteFragmentPagerAdapter adapter = (InfiniteFragmentPagerAdapter) mViewPager.getAdapter();
         if(adapter != null)
-        mCount = adapter.getRealCount();
+        mCount = adapter.getCount();
         if (mCount > 0) {
             requestLayout();
         }
@@ -108,7 +108,7 @@ public class CirclePageIndicator extends View {
 
     private void updateCount() {
         InfiniteFragmentPagerAdapter adapter = (InfiniteFragmentPagerAdapter) mViewPager.getAdapter();
-        mCount = (adapter == null) ? 0 : adapter.getRealCount();
+        mCount = (adapter == null) ? 0 : adapter.getCount();
         requestLayout();
     }
 

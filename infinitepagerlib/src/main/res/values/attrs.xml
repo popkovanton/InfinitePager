@@ -3,6 +3,7 @@
     <!-- InfinitePagerLayout -->
     <declare-styleable name="InfiniteViewPager">
         <attr name="aspectRatio" format="float" />
+        <attr name="isAspectRatio" format="boolean" />
         <attr name="autoSlideDuration" format="integer|reference" />
         <attr name="autoSlide" format="boolean" />
         <!-- Radius of the circles. This is also the spacing between circles. -->

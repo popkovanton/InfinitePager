@@ -27,6 +27,7 @@ public class InfiniteViewPager extends FrameLayout {
     private int indicatorMarginHorizontal;
     private int indicatorVisibility = DEFAULT_INDICATOR_VISIBILITY;
 
+    private boolean isAspectRatio;
     private float mAspectRatio;
 
     private ViewPager mViewPager;
@@ -56,6 +57,7 @@ public class InfiniteViewPager extends FrameLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.InfiniteViewPager);
         try {
+            isAspectRatio = a.getBoolean(R.styleable.InfiniteViewPager_isAspectRatio, false);
             mAspectRatio = a.getFloat(R.styleable.InfiniteViewPager_aspectRatio, 0.32f);
             mIsAutoSlideEnabled = a.getBoolean(R.styleable.InfiniteViewPager_autoSlide, false);
             mAutoSlideDuration = a.getInt(R.styleable.InfiniteViewPager_autoSlideDuration, (int) DEFAULT_SLIDE_DURATION);
@@ -91,10 +93,12 @@ public class InfiniteViewPager extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int measuredHeight = Math.round(mAspectRatio * measuredWidth);
-        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY);
-        super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
+        if (isAspectRatio) {
+            int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
+            int measuredHeight = Math.round(mAspectRatio * measuredWidth);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY);
+        }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
@@ -134,11 +138,15 @@ public class InfiniteViewPager extends FrameLayout {
     }
 
     private void slide() {
-        if (mViewPager != null) {
+        if (mViewPager != null && mViewPager.getAdapter() != null) {
             int next = mViewPager.getCurrentItem() + 1;
-            mViewPager.setCurrentItem(next, true);
+            if (mViewPager.getCurrentItem() == mViewPager.getAdapter().getCount() - 1) {
+                mViewPager.setCurrentItem(0, false);
+            } else {
+                mViewPager.setCurrentItem(next, true);
+            }
             if (mIsAutoSlideEnabled && mAutoSlider != null) {
-                postDelayed(mAutoSlider, mAutoSlideDuration);
+                mViewPager.postDelayed(mAutoSlider, mAutoSlideDuration);
             }
         }
     }
@@ -169,6 +177,11 @@ public class InfiniteViewPager extends FrameLayout {
 
     public void setMargin(int margin) {
         mIndicator.setMargin(margin);
+    }
+
+    public void setAspectRatio(boolean isAspectRatio, float mAspectRatio) {
+        this.isAspectRatio = isAspectRatio;
+        this.mAspectRatio = mAspectRatio;
     }
 
     /**

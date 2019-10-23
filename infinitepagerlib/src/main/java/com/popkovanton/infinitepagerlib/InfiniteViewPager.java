@@ -115,6 +115,12 @@ public class InfiniteViewPager extends FrameLayout {
         stopAutoSlide();
     }
 
+    public void updateIndicator(){
+        if(mIndicator != null && indicatorVisibility == View.VISIBLE){
+            mIndicator.updateCount();
+        }
+    }
+
     public void setAdapter(PagerAdapter adapter) {
         mViewPager.setAdapter(adapter);
         mIndicator.setViewPager(mViewPager);

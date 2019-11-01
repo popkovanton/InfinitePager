@@ -2,6 +2,7 @@ package com.popkovanton.infinitepagerlib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,6 +51,7 @@ public class InfiniteViewPager extends FrameLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
+        float density = context.getResources().getDisplayMetrics().density;
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.pager_layout, this);
         mViewPager = findViewById(R.id.pager);
@@ -69,19 +71,19 @@ public class InfiniteViewPager extends FrameLayout {
 
             setIndicatorVisibility(indicatorVisibility);
             if (indicatorVisibility == View.VISIBLE) {
-                int unselectedColor = a.getColor(R.styleable.InfiniteViewPager_unselectedColor, 0);
+                int unselectedColor = a.getColor(R.styleable.InfiniteViewPager_unselectedColor, Color.WHITE);
                 if (unselectedColor != 0) {
                     setUnselectedColor(unselectedColor);
                 }
-                int selectedColor = a.getColor(R.styleable.InfiniteViewPager_selectedColor, 0);
+                int selectedColor = a.getColor(R.styleable.InfiniteViewPager_selectedColor, Color.BLACK);
                 if (selectedColor != 0) {
                     setSelectedColor(selectedColor);
                 }
-                int radius = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_indicatorRadius, 0);
+                int radius = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_indicatorRadius, (int) (3 * density));
                 if (radius != 0) {
                     setRadius(radius);
                 }
-                int margin = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_marginBtwIndicators, 0);
+                int margin = a.getDimensionPixelSize(R.styleable.InfiniteViewPager_marginBtwIndicators, (int) (4 * density));
                 if (margin != 0) {
                     setMargin(margin);
                 }
@@ -121,7 +123,7 @@ public class InfiniteViewPager extends FrameLayout {
         }
     }
 
-    public void setAdapter(PagerAdapter adapter) {
+    public void setAdapter(InfiniteFragmentPagerAdapter adapter) {
         mViewPager.setAdapter(adapter);
         mIndicator.setViewPager(mViewPager);
     }

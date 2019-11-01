@@ -63,8 +63,8 @@ public class CirclePageIndicator extends View {
         try {
             mMargin = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_marginBtwIndicators, (int) (4 * density));
             mRadius = a.getDimensionPixelSize(R.styleable.CirclePageIndicator_indicatorRadius, (int) (3 * density));
-            mSelectedColor = a.getColor(R.styleable.CirclePageIndicator_selectedColor, Color.WHITE);
-            mUnselectedColor = a.getColor(R.styleable.CirclePageIndicator_unselectedColor, Color.rgb(128, 128, 128));
+            mSelectedColor = a.getColor(R.styleable.CirclePageIndicator_selectedColor, Color.BLACK);
+            mUnselectedColor = a.getColor(R.styleable.CirclePageIndicator_unselectedColor, Color.WHITE);
             isClickable = a.getBoolean(R.styleable.CirclePageIndicator_clickable, true);
         } finally {
             a.recycle();

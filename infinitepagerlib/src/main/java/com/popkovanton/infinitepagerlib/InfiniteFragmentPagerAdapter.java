@@ -9,30 +9,9 @@ import java.util.List;
 
 public abstract class InfiniteFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-    private final List<Fragment> fragments;
-
     public InfiniteFragmentPagerAdapter(@NonNull FragmentManager fm) {
-        super(fm);
-        fragments = initFragments();
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
-
-    @NonNull
-    @Override
-    public Fragment getItem(int position) {
-        return getFragments().get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return fragments != null ? fragments.size() : 0;
-    }
-
-    protected abstract List<Fragment> initFragments();
-
-    protected List<Fragment> getFragments() {
-        return fragments;
-    }
-
 
     public boolean isEmpty() {
         return getCount() == 0;

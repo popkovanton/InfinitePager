@@ -6,29 +6,37 @@ import androidx.fragment.app.FragmentManager;
 
 import com.popkovanton.infinitepagerlib.InfiniteFragmentPagerAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SliderAdapter extends InfiniteFragmentPagerAdapter {
 
-    public SliderAdapter(@NonNull FragmentManager fm) {
+    private int counter = 5;
+
+    SliderAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
+    @NonNull
     @Override
-    protected List<Fragment> initFragments() {
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(SliderFragment.newInstance(1));
-        fragments.add(SliderFragment.newInstance(2));
-        fragments.add(SliderFragment.newInstance(3));
-        fragments.add(SliderFragment.newInstance(4));
-        fragments.add(SliderFragment.newInstance(5));
-        return fragments;
+    public Fragment getItem(int position) {
+        return SliderFragment.newInstance(position);
+    }
+
+    @Override
+    public int getCount() {
+        return counter;
+    }
+
+    public void decPages() {
+        if(counter >= 1) counter--;
+        notifyDataSetChanged();
+    }
+
+    public void incPages() {
+        counter++;
+        notifyDataSetChanged();
     }
 
 
-   /* public int getItemPosition(Object object) {
+    public int getItemPosition(Object object) {
         return POSITION_NONE;
-    }*/
-
+    }
 }

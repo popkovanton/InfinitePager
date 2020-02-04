@@ -3,10 +3,17 @@ package com.popkovanton.infinitepagersample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.popkovanton.infinitepagerlib.InfiniteViewPager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        View.OnClickListener {
+
+    private SliderAdapter mImageSliderAdapter;
+    private InfiniteViewPager mImageSliderView;
+    private Button buttonDecrease, buttonIncrease;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +23,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupImageSlider() {
-        InfiniteViewPager mImageSliderView = findViewById(R.id.infiniteSlider);
-        SliderAdapter mImageSliderAdapter = new SliderAdapter(getSupportFragmentManager());
+        mImageSliderView = findViewById(R.id.infiniteSlider);
+        mImageSliderAdapter = new SliderAdapter(getSupportFragmentManager());
         mImageSliderView.setAdapter(mImageSliderAdapter);
+
+        buttonDecrease = findViewById(R.id.buttonDecrease);
+        buttonDecrease.setOnClickListener(this);
+        buttonIncrease = findViewById(R.id.buttonIncrease);
+        buttonIncrease.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.buttonIncrease:
+                mImageSliderAdapter.incPages();
+                break;
+            case R.id.buttonDecrease:
+                mImageSliderAdapter.decPages();
+                break;
+        }
+        mImageSliderView.updateIndicator();
     }
 }

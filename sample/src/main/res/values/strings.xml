@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">InfinitePager</string>
+    <string name="button_decrease">Decrease (-)</string>
+    <string name="button_increase">Increase (+)</string>
 </resources>

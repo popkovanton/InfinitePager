@@ -1,6 +1,7 @@
 package com.popkovanton.infinitepagersample;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.fragment.app.Fragment;
 public class SliderFragment extends Fragment {
 
     private int number;
+    private View rootView;
+    private TextView textView;
 
     static SliderFragment newInstance(int number) {
         SliderFragment sliderFragment = new SliderFragment();
@@ -35,10 +38,21 @@ public class SliderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.slider_fragment, container, false);
-        TextView textView = view.findViewById(R.id.id);
-        textView.setText(String.valueOf(number));
+        rootView = inflater.inflate(R.layout.slider_fragment, container, false);
+        textView = rootView.findViewById(R.id.id);
+        return rootView;
+    }
 
-        return view;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        textView.setText(String.valueOf(number));
+    }
+
+    @Override
+    public void onDestroyView() {
+        rootView = null;
+        textView = null;
+        super.onDestroyView();
     }
 }

@@ -13,8 +13,8 @@
         <attr name="selectedColor"/>
         <attr name="clickable"/>
         <attr name="indicatorGravity" />
-        <attr name="indicatorMarginHorizontal"  />
-        <attr name="indicatorMarginVertical" />
+        <attr name="indicatorMarginHorizontal" format="dimension"  />
+        <attr name="indicatorMarginVertical" format="dimension" />
         <attr name="indicatorVisibility" />
     </declare-styleable>
 

@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="colorTabSliderActive">#F983E6</color>
-    <color name="colorTabSliderNotActive">#996D6D6D</color>
+    <color name="colorTabSliderActive">#A5A4A5</color>
+    <color name="colorTabSliderNotActive">#99000000</color>
 </resources>
